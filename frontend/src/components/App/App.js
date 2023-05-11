@@ -1,5 +1,7 @@
+import React, { useEffect, useState } from 'react';
 import { Route, Switch, /*  Redirect, useHistory */ } from 'react-router-dom';
 import './App.css';
+import { beatfilmApi } from '../../utils/MoviesApi'
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -11,7 +13,48 @@ import Footer from '../Footer/Footer';
 import PageNotFound from '../PageNotFound/PageNotFound'
 import Preloader from '../Movies/Preloader/Preloader';
 
+
 function App() {
+
+  const [isSearching, setIsSearching] = useState(false);
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  function handleSearchMovies() {
+    setIsSearching(true);
+  }
+
+  function closeSearchMovies() {
+    setIsSearching(false);
+  }
+
+  /*   useEffect(() => {
+      beatfilmApi.getAllMovies()
+        .then((dataFilms) => {
+          setMovies(dataFilms);
+        })
+        .catch((err) => {
+          console.log('Данные не получены', err)
+        })
+  
+    }, [isSearching]) */
+
+
+  function handleSearchByName() {  /*  понять нужны ли сюда данные которые пробрасываем переменной сюда из SearchForm */
+    setIsLoading(true);
+    beatfilmApi.getAllMovies()
+      .then((dataFilms) => {
+        setMovies(dataFilms);
+      })
+      .catch((err) => {
+        console.log('Данные не получены', err)
+      })
+      .finally(() => {
+        setIsLoading(false);
+      })
+  }
+
+
   return (
     <div className="page">
       <Switch>
@@ -24,7 +67,13 @@ function App() {
 
         <Route path='/movies'>
           <Header />
-          <Movies />
+          <Movies
+            movies={movies}
+            onSearchMovies={handleSearchMovies}
+            onIsSearching={isSearching}
+            onSearchByName={handleSearchByName}
+            isLoading={isLoading}
+          />
           <Footer />
         </Route>
 
