@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.794e827a.css",
+    "main.js": "/static/js/main.52057434.js",
+    "static/js/787.14e4bc02.chunk.js": "/static/js/787.14e4bc02.chunk.js",
+    "static/media/Inter-Medium.woff": "/static/media/Inter-Medium.9053572c46aeb4b16caa.woff",
+    "static/media/Inter-Black.woff": "/static/media/Inter-Black.c6938660eec019fefd68.woff",
+    "static/media/Inter-Regular.woff": "/static/media/Inter-Regular.8c206db99195777c6769.woff",
+    "static/media/Inter-Medium.woff2": "/static/media/Inter-Medium.293fd13dbca5a3e450ef.woff2",
+    "static/media/Inter-Black.woff2": "/static/media/Inter-Black.15ca31c0a2a68f76d2d1.woff2",
+    "static/media/Inter-Regular.woff2": "/static/media/Inter-Regular.c8ba52b05a9ef10f4758.woff2",
+    "static/media/studentphoto.png": "/static/media/studentphoto.0a596098f2eb4b454469.png",
+    "static/media/logo.svg": "/static/media/logo.78ee6e76ae0211ac88d9baa2ce536054.svg",
+    "index.html": "/index.html",
+    "static/media/placeholderloupe.svg": "/static/media/placeholderloupe.f6ed92abab20e2d32cce.svg",
+    "static/media/loupe.svg": "/static/media/loupe.d0fb07289988354c22e6.svg",
+    "static/media/sideclosebutton.svg": "/static/media/sideclosebutton.4828fddbd650ab863f28.svg",
+    "static/media/portfoliopointer.svg": "/static/media/portfoliopointer.bd2ba961cfad92f555cb31c4baed17a3.svg",
+    "main.794e827a.css.map": "/static/css/main.794e827a.css.map",
+    "main.52057434.js.map": "/static/js/main.52057434.js.map",
+    "787.14e4bc02.chunk.js.map": "/static/js/787.14e4bc02.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.794e827a.css",
+    "static/js/main.52057434.js"
+  ]
+}
