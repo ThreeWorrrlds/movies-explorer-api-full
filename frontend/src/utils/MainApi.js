@@ -1,7 +1,11 @@
 /* export const BASE_URL = 'http://localhost:3000'; */
 export const BASE_URL = 'http://localhost:3005';
 
-export const CURRENT_TOKEN = localStorage.getItem('jwt');
+/* export const CURRENT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY1ZWVkNzA0YTE1MTQ2ZWFlMWZlNmQiLCJpYXQiOjE2ODQ0MDE4NzksImV4cCI6MTY4NTAwNjY3OX0.-MHMDYlHKKuj0BdUbz_xEgmPG6nmnnMwUkV0u-ymI68' */
+
+export const CURRENT_TOKEN = JSON.parse(localStorage.getItem('jwt'));
+
+/* export const IMAGE_URL = 'https://api.nomoreparties.co' */
 
 export class MainApi {
   #onResponce(res) {
@@ -21,69 +25,85 @@ export class MainApi {
   }
 
 
-  getAllMovies(/* token */) {
+  /* Добавляет фильм в избранное */
+  async addFavoriteMovie(data) {
     return this._request(`${this._baseUrl}/movies`, {
-      headers: {
-        /* "authorization": `Bearer ${token}`, */
-        "content-type": "application/json"
-      }
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        country: data.country,
+        director: data.director,
+        duration: data.duration,
+        year: data.year,
+        description: data.description,
+        image: await `https://api.nomoreparties.co/${data.image.url}`,
+        trailerLink: data.trailerLink,
+        thumbnail: await `https://api.nomoreparties.co/${data.image.url}`,
+        movieId: data.id,
+        nameRU: data.nameRU,
+        nameEN: data.nameEN
+      })
     })
   }
 
-  /*   deleteCard(cardId) {
-      return this._request(`${this._baseUrl}/cards/${cardId}`, {
-        method: 'DELETE',
-        headers: this._headers
+  /*----- Получаем все фильмы сервера (сохранённые)------ */
+  getAllFavoriteMovies() {
+    return this._request(`${this._baseUrl}/movies`, {
+      headers: this._headers,
+    })
+  }
+
+  /* ------Запрос на удаление фильма с сервера (из сохранённых)---- */
+  deleteFavoriteMovie(id) {
+    return this._request(`${this._baseUrl}/movies/${id}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+  }
+
+  /* ------------- Регистрация пользователя ------- */
+  registerUser(name, email, password) {
+    return this._request(`${this._baseUrl}/signup`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password
       })
-    }
-  
-    changeLike(cardId, isLike) {
-      return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
-        method: isLike ? 'DELETE' : 'PUT',
-        headers: this._headers
+    })
+  };
+
+  /* --------Вход пользователя по имейл и паролю----------*/
+  loginUser(email, password) {
+    return this._request(`${this._baseUrl}/signin`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({
+        email: email,
+        password: password
       })
-    }
-  
-    changeAvatar(data) {
-      return this._request(`${this._baseUrl}/users/me/avatar`, {
-        method: 'PATCH',
-        headers: this._headers,
-        body: JSON.stringify({
-          avatar: data.avatar
-        })
+    })
+  };
+
+  /* --------Получение данных пользователя с сервера----------*/
+  getUserInfoFromServer() {
+    return this._request(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+    })
+  }
+
+  /* --------Обновление данных пользователя на сервере----------*/
+  updateUserInfoOnServer(name, email) {
+    return this._request(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({
+        name: name,
+        email: email
       })
-    }
-  
-    createUserCard(data) {
-      return this._request(`${this._baseUrl}/cards`, {
-        method: 'POST',
-        headers: this._headers,
-        body: JSON.stringify({
-          name: data.name,
-          link: data.link
-        })
-      })
-    }
-  
-    getUserInfoFromServer(token) {
-      return this._request(`${this._baseUrl}/users/me`, {
-        headers: {
-          "authorization": `Bearer ${token}`,
-          "content-type": "application/json"
-        }
-      })
-    }
-  
-    sendUserInfoToServer(data) {
-      return this._request(`${this._baseUrl}/users/me`, {
-        method: 'PATCH',
-        headers: this._headers,
-        body: JSON.stringify({
-          name: data.name,
-          about: data.about
-        })
-      })
-    } */
+    })
+  }
 }
 
 const api = new MainApi(BASE_URL,
@@ -95,4 +115,5 @@ const api = new MainApi(BASE_URL,
   });
 export { api };
 
+/* "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDY1ZWVkNzA0YTE1MTQ2ZWFlMWZlNmQiLCJpYXQiOjE2ODQ0MDE4NzksImV4cCI6MTY4NTAwNjY3OX0.-MHMDYlHKKuj0BdUbz_xEgmPG6nmnnMwUkV0u-ymI68", */
 /* '9800edab-c01e-4941-9a81-bb143e90c5b8' */
