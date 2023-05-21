@@ -33,11 +33,6 @@ function SavedMovies({
         showFilms={isSearching ? foundFilmsBySaved : showFilms}
         handleBtnDelete={handleBtnDelete}
       />
-
-      {/*  <section className="movies__show-more" htmlFor="load-more">
-        <button className="movies__show-more-button" type="button"  >Еще</button>
-      </section> */}
-
     </div>
   );
 }

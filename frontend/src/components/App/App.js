@@ -58,7 +58,6 @@ function App() {
     }
     api.loginUser(email, password)
       .then((jwt) => {
-        console.log(jwt);
         localStorage.setItem('jwt', JSON.stringify(jwt.token));
         setLoggedIn(true);
         setCurrentUser({
@@ -323,53 +322,3 @@ function App() {
 }
 
 export default App;
-
-
-
-/*  function showAllFoundFilms() {
-   setFilms(JSON.parse(localStorage.getItem('showFoundFilms')))
-   setMovies(JSON.parse(localStorage.getItem('dataFilms')));   
- } */
-
-
-/*   useEffect(() => {
-    console.log(films.length)
-    if (films.length === 0 && isSearching) {
-      const showFoundFilms = movies.filter((item, index) => {
-        if (index < quantityCards) {
-          return item;
-        }
-      })
-      localStorage.setItem('showFoundFilms', JSON.stringify(showFoundFilms));
-    }
-  }, [films, isSearching, movies, quantityCards]); */
-
-/*   console.log(
-     "data:", {
-     country: dataFavoriteMovie.country,
-     director: dataFavoriteMovie.director,
-     duration: dataFavoriteMovie.duration,
-     year: dataFavoriteMovie.year,
-     description: dataFavoriteMovie.description,
- 
-     trailerLink: dataFavoriteMovie.trailerLink,
- 
-     movieId: dataFavoriteMovie.id,
-     nameRU: dataFavoriteMovie.nameRU,
-     nameEN: dataFavoriteMovie.nameEN
-   }) */
-
-
-
-/*   function addFirstVisibleCards() {
-     if (window.innerWidth > 1279) {
-       setQuantityCards(16);
-     } else if (window.innerWidth > 1196) {
-       setQuantityCards(12);
-     } else if (window.innerWidth > 629) {
-       setQuantityCards(8);
-     } else if (window.innerWidth <= 629) {
-       setQuantityCards(5);
-     }
-      createVisibleFilms(movies); 
-   } */
